@@ -1,0 +1,19 @@
+name: ventas_diarias
+version: 1.0.0
+config-version: 2
+profile: ventas_diarias
+model-paths: [models]
+seed-paths: [seeds]
+test-paths: [tests]
+
+seeds:
+  ventas_diarias:
+    eventos_pedidos:
+      +column_types:
+        evento_id: integer
+        lote_id: integer
+        pedido_id: integer
+        fecha_pedido: date
+        canal: varchar(20)
+        estado: varchar(20)
+        importe_eur: decimal(12, 2)

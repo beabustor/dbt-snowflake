@@ -1,0 +1,11 @@
+evento_id,lote_id,pedido_id,fecha_pedido,canal,estado,importe_eur
+1,1,1001,2025-03-10,web,pagado,120.00
+1,1,1001,2025-03-10,web,pagado,120.00
+2,1,1002,2025-03-10,tienda,pagado,45.50
+3,1,1003,2025-03-11,web,pendiente,80.00
+4,1,1004,2025-03-11,web,pagado,59.00
+5,2,1002,2025-03-10,tienda,cancelado,45.50
+6,2,1003,2025-03-11,web,pagado,80.00
+7,2,1005,2025-03-10,web,pagado,25.00
+8,2,1006,2025-03-11,tienda,pagado,40.00
+9,2,1004,2025-03-11,web,pagado,64.00

@@ -1,0 +1,57 @@
+version: 2
+
+seeds:
+  - name: eventos_pedidos
+    description: Historial sintético de eventos de pedido con dos lotes y una entrega duplicada.
+    columns:
+      - name: lote_id
+        description: Número de lote de llegada, creciente en el tiempo.
+        data_tests:
+          - not_null
+
+models:
+  - name: stg_eventos_pedidos
+    description: Eventos normalizados y sin duplicados idénticos, hasta el lote disponible.
+    columns:
+      - name: evento_id
+        description: Identificador del evento y criterio de orden dentro del lote.
+        data_tests:
+          - unique
+          - not_null
+      - name: pedido_id
+        data_tests:
+          - not_null
+      - name: fecha_pedido
+        data_tests:
+          - not_null
+      - name: estado
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [pendiente, pagado, cancelado]
+      - name: canal
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: [web, tienda]
+      - name: importe_eur
+        data_tests:
+          - not_null
+
+  - name: fct_pedidos
+    description: Una fila por pedido con su último estado conocido, incluidas las cancelaciones.
+    columns:
+      - name: pedido_id
+        data_tests:
+          - unique
+          - not_null
+
+  - name: ventas_diarias
+    description: Número e importe de pedidos actualmente pagados agrupados por fecha del pedido.
+    columns:
+      - name: fecha_pedido
+        data_tests:
+          - unique
+          - not_null
